@@ -1,0 +1,34 @@
+# See https://atom.io/docs/latest/hacking-atom-package-word-count#menus for more details
+'context-menu':
+  'atom-text-editor': [
+    {
+      'label': 'Send location to Coati'
+      'command': 'atom-coati:sendLocation'
+    }
+  ]
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'atom-coati'
+      'submenu': [
+        {
+          'label': 'Start Server'
+          'command': 'atom-coati:startServer'
+        },
+        {
+          'label': 'Restart Server'
+          'command': 'atom-coati:restartServer'
+        },
+        {
+          'label': 'Stop Server'
+          'command': 'atom-coati:stopServer'
+        },
+        {
+          'label': 'Send Location to coati'
+          'command': 'atom-coati:sendLocation'
+        }
+      ]
+    ]
+  }
+]
