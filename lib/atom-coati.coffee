@@ -1,4 +1,3 @@
-AtomCoatiView = require './atom-coati-view'
 {CompositeDisposable} = require 'atom'
 
 net = require 'net'
@@ -6,7 +5,6 @@ fs = require 'fs'
 path = require 'path'
 
 module.exports = AtomCoati =
-  atomCoatiView: null
   modalPanel: null
   subscriptions: null
 
@@ -30,8 +28,6 @@ module.exports = AtomCoati =
       default: 6666
 
   activate: (state) ->
-    @atomCoatiView = new AtomCoatiView(state.atomCoatiViewState)
-    @modalPanel = atom.workspace.addModalPanel(item: @atomCoatiView.getElement(), visible: false)
 
     # Events subscribed to in atom's system can be easily cleaned up with a CompositeDisposable
     @subscriptions = new CompositeDisposable
@@ -48,10 +44,8 @@ module.exports = AtomCoati =
     this.stopServer()
     @modalPanel.destroy()
     @subscriptions.dispose()
-    @atomCoatiView.destroy()
 
   serialize: ->
-    atomCoatiViewState: @atomCoatiView.serialize()
 
   sendLocation: ->
     console.log 'Send Location to Coati'
@@ -62,6 +56,7 @@ module.exports = AtomCoati =
       editor = atom.workspace.getActiveTextEditor()
       file = editor.getPath()
       cursor = editor.getCursorBufferPosition()
+      cursor.row += 1
 
       connection.write("setActiveToken>>#{file}>>#{cursor.row}>>#{cursor.column}<EOM>")
       atom.notifications.addInfo('Location sent to Coati')
@@ -78,7 +73,8 @@ module.exports = AtomCoati =
         if sp[0] == "moveCursor"
           fs.exists sp[1], (exists) ->
             if exists
-              atom.workspace.open fs.resolve sp[1],
+              p = path.resolve sp[1].toString()
+              atom.workspace.open p,
                 initialLine: sp[2] - 1
           	    initialColumn: sp[3]
             else
