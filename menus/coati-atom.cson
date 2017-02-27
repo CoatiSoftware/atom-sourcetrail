@@ -13,15 +13,15 @@
       'label': 'Coati'
       'submenu': [
         {
-          'label': 'Start Server'
+          'label': 'Start server'
           'command': 'atom-coati:startServer'
         },
         {
-          'label': 'Restart Server'
+          'label': 'Restart server'
           'command': 'atom-coati:restartServer'
         },
         {
-          'label': 'Stop Server'
+          'label': 'Stop server'
           'command': 'atom-coati:stopServer'
         },
         {
