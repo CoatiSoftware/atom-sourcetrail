@@ -93,8 +93,13 @@ module.exports = AtomCoati =
             else
               atom.notifications.addError("Cant find #{sp[1]}")
         if sp[0] == "ping"
-          this.__super__.sendPing();
-          socket.write("ping>>Atom<EOM>")
+          ip = atom.config.get('atom-coati.host')
+          port = atom.config.get('atom-coati.port_coati')
+          connection = net.createConnection port, ip
+          connection.on 'connect', () ->
+            connection.write("ping>>Atom<EOM>")
+            console.log('Ping sent do Coati')
+            connection.end()
 
     ip = atom.config.get('atom-coati.host')
     port = atom.config.get('atom-coati.port_atom')
