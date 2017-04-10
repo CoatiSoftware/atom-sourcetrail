@@ -1,5 +1,5 @@
 {
-  "name": "atom-sourcetrail",
+  "name": "atom-coati",
   "main": "./lib/atom-sourcetrail",
   "version": "0.2.4",
   "description": "A short description of your package",
