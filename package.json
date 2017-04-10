@@ -1,17 +1,17 @@
 {
-  "name": "atom-coati",
-  "main": "./lib/atom-coati",
-  "version": "0.2.3",
+  "name": "atom-sourcetrail",
+  "main": "./lib/atom-sourcetrail",
+  "version": "0.2.4",
   "description": "A short description of your package",
   "keywords": [],
   "activationCommands": {
     "atom-workspace": [
-      "atom-coati:toggle",
-      "atom-coati:startServer",
-      "atom-coati:sendLocation"
+      "atom-sourcetrail:toggle",
+      "atom-sourcetrail:startServer",
+      "atom-sourcetrail:sendLocation"
     ]
   },
-  "repository": "https://github.com/CoatiSoftware/atom-coati",
+  "repository": "https://github.com/CoatiSoftware/atom-sourcetrail",
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"

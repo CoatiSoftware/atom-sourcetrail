@@ -1,5 +1,5 @@
-# atom-coati package
+# atom-sourcetrail package
 
-Atom plugin to communicate with [Coati](https://coati.io).
+Atom plugin to communicate with [Coati](https://sourcetrail.com).
 
-![A screenshot of your package](https://github.com/CoatiSoftware/atom-coati/blob/master/atom-coati.gif?raw=true)
+![A screenshot of your package](https://github.com/CoatiSoftware/atom-sourcetrail/blob/master/atom-sourcetrail.gif?raw=true)

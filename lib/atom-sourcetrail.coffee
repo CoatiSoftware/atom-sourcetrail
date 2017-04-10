@@ -4,7 +4,7 @@ net = require 'net'
 fs = require 'fs'
 path = require 'path'
 
-module.exports = AtomCoati =
+module.exports = AtomSourcetrail =
   modalPanel: null
   subscriptions: null
 
@@ -16,7 +16,7 @@ module.exports = AtomCoati =
       description: 'Ip to communicate with Coati'
       type: 'string'
       default: 'localhost'
-    port_coati:
+    port_sourcetrail:
       title: 'Port Coati'
       description: 'Port Atom sends messages to Coati'
       type: 'integer'
@@ -33,12 +33,12 @@ module.exports = AtomCoati =
     @subscriptions = new CompositeDisposable
 
     # Register command that send location this view
-    @subscriptions.add atom.commands.add 'atom-workspace', 'atom-coati:sendLocation': => @sendLocation()
+    @subscriptions.add atom.commands.add 'atom-workspace', 'atom-sourcetrail:sendLocation': => @sendLocation()
 
     # Register command that send location this view
-    @subscriptions.add atom.commands.add 'atom-workspace', 'atom-coati:startServer': => @startServer()
-    @subscriptions.add atom.commands.add 'atom-workspace', 'atom-coati:restartServer': => @restartServer()
-    @subscriptions.add atom.commands.add 'atom-workspace', 'atom-coati:stopServer': => @stopServer()
+    @subscriptions.add atom.commands.add 'atom-workspace', 'atom-sourcetrail:startServer': => @startServer()
+    @subscriptions.add atom.commands.add 'atom-workspace', 'atom-sourcetrail:restartServer': => @restartServer()
+    @subscriptions.add atom.commands.add 'atom-workspace', 'atom-sourcetrail:stopServer': => @stopServer()
 
   deactivate: ->
     this.stopServer()
@@ -51,8 +51,8 @@ module.exports = AtomCoati =
     if @server == null
       @startServer()
     console.log 'Send location to Coati'
-    ip = atom.config.get('atom-coati.host')
-    port = atom.config.get('atom-coati.port_coati')
+    ip = atom.config.get('atom-sourcetrail.host')
+    port = atom.config.get('atom-sourcetrail.port_sourcetrail')
     connection = net.createConnection port, ip
     connection.on 'connect', () ->
       editor = atom.workspace.getActiveTextEditor()
@@ -68,8 +68,8 @@ module.exports = AtomCoati =
 
   sendPing: ->
     console.log 'Send ping to Coati'
-    ip = atom.config.get('atom-coati.host')
-    port = atom.config.get('atom-coati.port_coati')
+    ip = atom.config.get('atom-sourcetrail.host')
+    port = atom.config.get('atom-sourcetrail.port_sourcetrail')
     connection = net.createConnection port, ip
     connection.on 'connect', () ->
       connection.write("ping>>Atom<EOM>")
@@ -93,16 +93,16 @@ module.exports = AtomCoati =
             else
               atom.notifications.addError("Cant find #{sp[1]}")
         if sp[0] == "ping"
-          ip = atom.config.get('atom-coati.host')
-          port = atom.config.get('atom-coati.port_coati')
+          ip = atom.config.get('atom-sourcetrail.host')
+          port = atom.config.get('atom-sourcetrail.port_sourcetrail')
           connection = net.createConnection port, ip
           connection.on 'connect', () ->
             connection.write("ping>>Atom<EOM>")
             console.log('Ping sent do Coati')
             connection.end()
 
-    ip = atom.config.get('atom-coati.host')
-    port = atom.config.get('atom-coati.port_atom')
+    ip = atom.config.get('atom-sourcetrail.host')
+    port = atom.config.get('atom-sourcetrail.port_atom')
     try
       @server.listen port, ip
       this.sendPing()

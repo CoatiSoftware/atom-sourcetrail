@@ -3,7 +3,7 @@
   'atom-text-editor': [
     {
       'label': 'Send location to Coati'
-      'command': 'atom-coati:sendLocation'
+      'command': 'atom-sourcetrail:sendLocation'
     }
   ]
 'menu': [
@@ -14,19 +14,19 @@
       'submenu': [
         {
           'label': 'Start server'
-          'command': 'atom-coati:startServer'
+          'command': 'atom-sourcetrail:startServer'
         },
         {
           'label': 'Restart server'
-          'command': 'atom-coati:restartServer'
+          'command': 'atom-sourcetrail:restartServer'
         },
         {
           'label': 'Stop server'
-          'command': 'atom-coati:stopServer'
+          'command': 'atom-sourcetrail:stopServer'
         },
         {
-          'label': 'Send Location to coati'
-          'command': 'atom-coati:sendLocation'
+          'label': 'Send Location to sourcetrail'
+          'command': 'atom-sourcetrail:sendLocation'
         }
       ]
     ]
